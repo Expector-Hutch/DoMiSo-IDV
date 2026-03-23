@@ -87,30 +87,15 @@ if(Notes.Device==0) {
 ; q w e r t y u
 ; a s d f g h j
 ; z x c v b n m
-genshin_note_map := { 48:"z"
-, 50:"x"
-, 52:"c"
-, 53:"v"
-, 55:"b"
-, 57:"n"
-, 59:"m"
-, 60:"a"
-, 62:"s"
-, 64:"d"
-, 65:"f"
-, 67:"g"
-, 69:"h"
-, 71:"j"
-, 72:"q"
-, 74:"w"
-, 76:"e"
-, 77:"r"
-, 79:"t"
-, 81:"y"
-, 83:"u" }
+genshin_note_map := {48: ",", 49: "l", 50: ".", 51: ";", 52: "/"
+, 53: "i", 54: "9", 55: "o", 56: "0", 57: "p", 58: "-", 59: "["
+, 60: "z", 61: "s", 62: "x", 63: "d", 64: "c"
+, 65: "v", 66: "g", 67: "b", 68: "h", 69: "n", 70: "j", 71: "m"
+, 72: "q", 73: "2", 74: "w", 75: "3", 76: "e"
+, 77: "r", 78: "5", 79: "t", 80: "6", 81: "y", 82: "7", 83: "u"}
 
 IniRead, startup_music, setting.ini, update, startupMusic, 1
-IniRead, global_mode, setting.ini, setup, globalMode, 0
+IniRead, global_mode, setting.ini, setup, globalMode, 1
 
 #Include gui.ahk
 Gosub resolve
