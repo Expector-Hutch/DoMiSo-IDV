@@ -84,11 +84,12 @@ if(Notes.Device==0) {
 } else {
 	midi_device := True
 }
-; q w e r t y u
-; a s d f g h j
-; z x c v b n m
-genshin_note_map := {48: ",", 49: "l", 50: ".", 51: ";", 52: "/"
-, 53: "i", 54: "9", 55: "o", 56: "0", 57: "p", 58: "-", 59: "["
+
+format_vk(key) {
+	return Format("vk{:X}", GetKeyVK(key))
+}
+genshin_note_map := {48: format_vk(","), 49: "l", 50: format_vk("."), 51: format_vk(";"), 52: format_vk("/")
+, 53: "i", 54: "9", 55: "o", 56: "0", 57: "p", 58: format_vk("-"), 59: format_vk("[")
 , 60: "z", 61: "s", 62: "x", 63: "d", 64: "c"
 , 65: "v", 66: "g", 67: "b", 68: "h", 69: "n", 70: "j", 71: "m"
 , 72: "q", 73: "2", 74: "w", 75: "3", 76: "e"
@@ -119,7 +120,7 @@ genshin_array_sort(ByRef array)
 	array:={}
 	Loop, Parse, array_string, `n
 	{
-		if(RegExMatch(A_LoopField, "O)(\d+),(\w),(\d+)", note))
+		if(RegExMatch(A_LoopField, "O)(\d+),([^,]+),(\d+)", note))
 		{
 			array.Push({"delay":note[1], "note":note[2], "time":note[3]})
 		}
@@ -221,7 +222,7 @@ While(genshin_prepare_p <= genshin_play_array.Length() and deltaMS + 40 >= gensh
 }
 While(genshin_pressed_p <= genshin_play_array.Length() and deltaMS >= genshin_play_array[genshin_pressed_p].delay)
 {
-	if not genshin_play_array[genshin_pressed_p].note
+	if (genshin_play_array[genshin_pressed_p].note == "")
 	{
 		genshin_pressed_p += 1
 		Break
